@@ -1,0 +1,30 @@
+
+        /* Custom styles for dark theme card backgrounds and text colors */
+        .product-card-dark-bg {
+            background-color: #2d3748; /* Slightly lighter dark for cards */
+        }
+        .text-dark-primary {
+            color: #ffffff; /* White for main headings/titles */
+        }
+        .text-dark-secondary {
+            color: #cbd5e0; /* Lighter gray for descriptions */
+        }
+        .text-dark-price {
+            color: #90CDF4; /* Light blue for prices */
+        }
+        .text-dark-muted {
+            color: #a0aec0; /* Muted gray for reviews/small text */
+        }
+        .btn-dark-primary {
+            background-image: linear-gradient(to right, #6B46C1, #4C51BF); /* Purple-indigo gradient */
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.2s ease-in-out;
+        }
+        .btn-dark-primary:hover {
+            background-image: linear-gradient(to right, #7F58D3, #667EEA);
+            transform: translateY(-2px); /* Slight lift effect */
+        }
+        .btn-dark-primary:active {
+            transform: translateY(0); /* Return to original position on click */
+        }

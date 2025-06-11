@@ -12,5 +12,6 @@ if ($conn->connect_error) {
 }else{
     // print_r("working");
 }
+$url = "http://localhost/Snazmelo-Store";
 
 ?>
