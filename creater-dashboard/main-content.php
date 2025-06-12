@@ -1,64 +1,72 @@
       <div class="flex-1 flex flex-col main-content-wrapper md:ml-64">
-            <!-- Header -->
-            <header class="bg-gray-800 shadow-md p-4 flex items-center justify-between z-40">
-                <button id="sidebar-toggle-btn" class="text-gray-400 hover:text-white md:hidden focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-md p-2">
-                    <i class="fas fa-bars text-xl"></i>
-                </button>
-                <h1 class="text-xl sm:text-2xl font-semibold text-white ml-4 md:ml-0">Dashboard Overview</h1>
+          <!-- Header -->
+          <header class="bg-gray-800 shadow-md p-4 flex items-center justify-between z-40">
+              <button id="sidebar-toggle-btn"
+                  class="text-gray-400 hover:text-white md:hidden focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-md p-2">
+                  <i class="fas fa-bars text-xl"></i>
+              </button>
+              <h1 class="text-xl sm:text-2xl font-semibold text-white ml-4 md:ml-0">Dashboard Overview</h1>
 
-                <div class="flex items-center space-x-2 sm:space-x-4">
-                    <div class="relative hidden sm:block">
-                        <input type="text" placeholder="Search..."
-                            class="bg-gray-700 text-gray-100 placeholder-gray-400 rounded-lg py-2 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-indigo-500 w-32 md:w-48 transition-all duration-200 text-sm">
-                        <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
-                            <i class="fas fa-search"></i>
-                        </span>
-                    </div>
+              <div class="flex items-center space-x-2 sm:space-x-4">
+                  <div class="relative hidden sm:block">
+                      <input type="text" placeholder="Search..."
+                          class="bg-gray-700 text-gray-100 placeholder-gray-400 rounded-lg py-2 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-indigo-500 w-32 md:w-48 transition-all duration-200 text-sm">
+                      <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+                          <i class="fas fa-search"></i>
+                      </span>
+                  </div>
 
-                    <div class="relative">
-                        <button id="notifications-button" class="text-gray-400 hover:text-white relative focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-full p-2">
-                            <i class="fas fa-bell text-xl"></i>
-                            <span
-                                class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">3</span>
-                        </button>
-                        <div id="notifications-menu"
-                            class="absolute right-0 mt-2 w-64 bg-gray-700 rounded-md shadow-lg py-1 hidden z-50">
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-600 rounded-md">New message from
-                                Jane</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-600 rounded-md">Order #1234
-                                shipped</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-600 rounded-md">You have 1 new
-                                follower</a>
-                        </div>
-                    </div>
+                  <div class="relative">
+                      <button id="notifications-button"
+                          class="text-gray-400 hover:text-white relative focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-full p-2">
+                          <i class="fas fa-bell text-xl"></i>
+                          <span
+                              class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">3</span>
+                      </button>
+                      <div id="notifications-menu"
+                          class="absolute right-0 mt-2 w-64 bg-gray-700 rounded-md shadow-lg py-1 hidden z-50">
+                          <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-600 rounded-md">New
+                              message from
+                              Jane</a>
+                          <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-600 rounded-md">Order
+                              #1234
+                              shipped</a>
+                          <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-600 rounded-md">You
+                              have 1 new
+                              follower</a>
+                      </div>
+                  </div>
 
-                    <div class="relative">
-                        <button id="profile-button"
-                            class="flex items-center space-x-1 sm:space-x-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-full p-1">
-                            <img class="h-8 w-8 sm:h-9 sm:w-9 rounded-full object-cover"
-                                src="https://placehold.co/150x150/808080/FFFFFF?text=JD" alt="User Avatar">
-                            <span class="hidden sm:inline text-gray-200 text-sm">John Doe</span>
-                            <i class="fas fa-chevron-down text-gray-400 text-xs hidden sm:inline"></i>
-                        </button>
-                        <div id="profile-menu"
-                            class="absolute right-0 mt-2 w-48 bg-gray-700 rounded-md shadow-lg py-1 hidden z-50">
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-600 rounded-md">Your Profile</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-600 rounded-md">Settings</a>
-                            <a href="#" class="block px-4 py-2 text-sm text-red-400 hover:bg-gray-600 rounded-md">Sign out</a>
-                        </div>
-                    </div>
-                </div>
-            </header>
+                  <div class="relative">
+                      <button id="profile-button"
+                          class="flex items-center space-x-1 sm:space-x-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-full p-1">
+                          <img class="h-8 w-8 sm:h-9 sm:w-9 rounded-full object-cover"
+                              src="https://placehold.co/150x150/808080/FFFFFF?text=JD" alt="User Avatar">
+                          <span class="hidden sm:inline text-gray-200 text-sm">John Doe</span>
+                          <i class="fas fa-chevron-down text-gray-400 text-xs hidden sm:inline"></i>
+                      </button>
+                      <div id="profile-menu"
+                          class="absolute right-0 mt-2 w-48 bg-gray-700 rounded-md shadow-lg py-1 hidden z-50">
+                          <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-600 rounded-md">Your
+                              Profile</a>
+                          <a href="#"
+                              class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-600 rounded-md">Settings</a>
+                          <a href="#" class="block px-4 py-2 text-sm text-red-400 hover:bg-gray-600 rounded-md">Sign
+                              out</a>
+                      </div>
+                  </div>
+              </div>
+          </header>
 
-            <!-- Main Content Area -->
-            <main class="flex-1 overflow-y-auto p-4 sm:p-6 bg-gray-900">
-                <?php // require '../admin/profile.php'; ?> 
-                <?php //require 'product.php'; ?>
-                <div class="">
-                <?php require './add-product.php'; ?>
-</div>
-                <!-- Stat Cards -->
-                <!-- <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
+          <!-- Main Content Area -->
+          <main class="flex-1 overflow-y-auto p-4 sm:p-6 bg-gray-900">
+              <?php // require '../admin/profile.php'; ?>
+              <?php //require 'product.php'; ?>
+              <div class="">
+                  <?php require './add-product.php'; ?>
+              </div>
+              <!-- Stat Cards -->
+              <!-- <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
                     <div class="bg-gray-800 rounded-lg shadow-lg p-4 sm:p-6">
                         <div class="flex items-center justify-between mb-3 sm:mb-4">
                             <h2 class="text-lg sm:text-xl font-semibold text-gray-100">Total Sales</h2>
@@ -92,8 +100,8 @@
                     </div>
                 </div> -->
 
-                <!-- Recent Activity Section -->
-                <!-- <div class="bg-gray-800 rounded-lg shadow-lg p-4 sm:p-6 mb-6 sm:mb-8">
+              <!-- Recent Activity Section -->
+              <!-- <div class="bg-gray-800 rounded-lg shadow-lg p-4 sm:p-6 mb-6 sm:mb-8">
                     <h2 class="text-xl sm:text-2xl font-semibold text-gray-100 mb-4 sm:mb-6">Recent Activity</h2>
                     <ul id="activity-list" class="divide-y divide-gray-700">
                         <li class="py-2 sm:py-3 flex items-center justify-between">
@@ -140,8 +148,8 @@
                     <div id="activity-summary-output" class="mt-4 text-sm text-gray-300 italic"></div>
                 </div> -->
 
-                <!-- Latest Transactions Table -->
-                <!-- <div class="bg-gray-800 rounded-lg shadow-lg p-4 sm:p-6 mb-6 sm:mb-8">
+              <!-- Latest Transactions Table -->
+              <!-- <div class="bg-gray-800 rounded-lg shadow-lg p-4 sm:p-6 mb-6 sm:mb-8">
                     <h2 class="text-xl sm:text-2xl font-semibold text-gray-100 mb-4 sm:mb-6">Latest Transactions</h2>
                     <div class="overflow-x-auto">
                         <table class="min-w-full divide-y divide-gray-700">
@@ -213,9 +221,9 @@
                     </div>
                 </div> -->
 
-                <!-- Footer -->
-                <footer class="mt-6 sm:mt-8 text-center text-gray-500 text-xs sm:text-sm">
-                    &copy; 2025 Responsive Dark Dashboard. All rights reserved.
-                </footer>
-            </main>
-        </div>
+              <!-- Footer -->
+              <footer class="mt-6 sm:mt-8 text-center text-gray-500 text-xs sm:text-sm">
+                  &copy; 2025 Responsive Dark Dashboard. All rights reserved.
+              </footer>
+          </main>
+      </div>
