@@ -54,67 +54,60 @@ if (isset($_POST['submit'])) {
   require "header.php"
 ?>
 
-    
 
-    <section class="w-full bg-gray-800 shadow-2xl p-8 w-full mx-auto h-screen">
 
-        <h1 class="text-4xl font-bold text-center mb-10 text-white">
-            Add New Product
-        </h1>
-       
-        <!-- Form action updated to submit to the same page for PHP processing -->
-        <form action="" method="POST" class="space-y-6 max-w-[700px] mx-auto" enctype="multipart/form-data">
-            <!-- Product Name Input -->
-            <div>
-                <label for="product-name" class="block text-gray-300 text-lg font-medium mb-2">Product Name</label>
-                <input type="text" id="product-name" name="product_name"
-                       class="w-full p-3 rounded-lg bg-gray-700 text-white border border-gray-600
+<section class="w-full bg-gray-800 shadow-2xl p-8 w-full mx-auto h-screen">
+
+    <h1 class="text-4xl font-bold text-center mb-10 text-white">
+        Add New Product
+    </h1>
+
+    <!-- Form action updated to submit to the same page for PHP processing -->
+    <form action="" method="POST" class="space-y-6 max-w-[700px] mx-auto" enctype="multipart/form-data">
+        <!-- Product Name Input -->
+        <div>
+            <label for="product-name" class="block text-gray-300 text-lg font-medium mb-2">Product Name</label>
+            <input type="text" id="product-name" name="product_name" class="w-full p-3 rounded-lg bg-gray-700 text-white border border-gray-600
                               focus:ring-2 focus:ring-purple-500 focus:border-transparent
-                              placeholder-gray-400 text-base"
-                       placeholder="e.g., Ultra Smartwatch X" required>
-            </div>
+                              placeholder-gray-400 text-base" placeholder="e.g., Ultra Smartwatch X" required>
+        </div>
 
-            <!-- Price Input -->
-            <div>
-                <label for="product-price" class="block text-gray-300 text-lg font-medium mb-2">Price ($)</label>
-                <input type="number" id="product-price" name="product_price" step="0.01"
-                       class="w-full p-3 rounded-lg bg-gray-700 text-white border border-gray-600
+        <!-- Price Input -->
+        <div>
+            <label for="product-price" class="block text-gray-300 text-lg font-medium mb-2">Price ($)</label>
+            <input type="number" id="product-price" name="product_price" step="0.01" class="w-full p-3 rounded-lg bg-gray-700 text-white border border-gray-600
                               focus:ring-2 focus:ring-purple-500 focus:border-transparent
-                              placeholder-gray-400 text-base"
-                       placeholder="e.g., 199.99" required min="0">
-            </div>
+                              placeholder-gray-400 text-base" placeholder="e.g., 199.99" required min="0">
+        </div>
 
-            <!-- Description Textarea -->
-            <div>
-                <label for="product-description" class="block text-gray-300 text-lg font-medium mb-2">Description</label>
-                <textarea id="product-description" name="product_description" rows="5"
-                          class="w-full p-3 rounded-lg bg-gray-700 text-white border border-gray-600
+        <!-- Description Textarea -->
+        <div>
+            <label for="product-description" class="block text-gray-300 text-lg font-medium mb-2">Description</label>
+            <textarea id="product-description" name="product_description" rows="5" class="w-full p-3 rounded-lg bg-gray-700 text-white border border-gray-600
                                  focus:ring-2 focus:ring-purple-500 focus:border-transparent
                                  placeholder-gray-400 text-base resize-y"
-                          placeholder="Provide a detailed description of the product..." required></textarea>
-            </div>
+                placeholder="Provide a detailed description of the product..." required></textarea>
+        </div>
 
-            <!-- Image URL Input -->
-       <div>
-                <label for="product-image" class="block text-gray-300 text-lg font-medium mb-2">Product Image</label>
-                <input type="file" id="product-image" name="product_image"
-                       class="custom-file-input w-full p-3 rounded-lg bg-gray-700 text-white border border-gray-600
+        <!-- Image URL Input -->
+        <div>
+            <label for="product-image" class="block text-gray-300 text-lg font-medium mb-2">Product Image</label>
+            <input type="file" id="product-image" name="product_image" class="custom-file-input w-full p-3 rounded-lg bg-gray-700 text-white border border-gray-600
                               focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                       accept="image/png, image/jpeg, image/gif">
-                <p class="text-gray-400 text-sm mt-1">Accepted: JPG, PNG, GIF. Max size: 5MB.</p>
-            </div>
+                accept="image/png, image/jpeg, image/gif">
+            <p class="text-gray-400 text-sm mt-1">Accepted: JPG, PNG, GIF. Max size: 5MB.</p>
+        </div>
 
-            <!-- Submit Button -->
-            <button type="submit" name = "submit"
-                    class="w-full py-4 px-6 rounded-full text-xl font-semibold
+        <!-- Submit Button -->
+        <button type="submit" name="submit" class="w-full py-4 px-6 rounded-full text-xl font-semibold
                            bg-gradient-to-r from-blue-600 to-blue-800 text-white shadow-lg
                            hover:from-blue-700 hover:to-blue-900
                            focus:outline-none focus:ring-4 focus:ring-blue-300
                            transition-all duration-200 ease-in-out transform hover:scale-105 active:scale-95">
-                Add Product
-            </button>
+            Add Product
+        </button>
 
-            <?php echo $upload_message; ?>
-        </form>
+        <?php echo $upload_message; ?>
+    </form>
 
-    </section>
+</section>

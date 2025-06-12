@@ -1,152 +1,164 @@
+<script>
+// --- Sidebar and Dropdown Functionality ---
+const sidebar = document.querySelector('aside');
+const sidebarToggleBtn = document.getElementById('sidebar-toggle-btn');
+const profileButton = document.getElementById('profile-button');
+const profileMenu = document.getElementById('profile-menu');
+const notificationsButton = document.getElementById('notifications-button');
+const notificationsMenu = document.getElementById('notifications-menu');
+const mainContentWrapper = document.querySelector('.main-content-wrapper');
+const body = document.body;
 
-    <script>
-        // --- Sidebar and Dropdown Functionality ---
-        const sidebar = document.querySelector('aside');
-        const sidebarToggleBtn = document.getElementById('sidebar-toggle-btn');
-        const profileButton = document.getElementById('profile-button');
-        const profileMenu = document.getElementById('profile-menu');
-        const notificationsButton = document.getElementById('notifications-button');
-        const notificationsMenu = document.getElementById('notifications-menu');
-        const mainContentWrapper = document.querySelector('.main-content-wrapper');
-        const body = document.body;
+// Toggle Sidebar on small screens
+sidebarToggleBtn.addEventListener('click', () => {
+    body.classList.toggle('sidebar-open');
+    sidebar.classList.toggle('hidden-mobile'); // Toggle class for mobile visibility
+});
 
-        // Toggle Sidebar on small screens
-        sidebarToggleBtn.addEventListener('click', () => {
-            body.classList.toggle('sidebar-open');
-            sidebar.classList.toggle('hidden-mobile'); // Toggle class for mobile visibility
+// Close sidebar when clicking outside on small screens if it's open
+document.addEventListener('click', (event) => {
+    // Check if screen is mobile AND sidebar is open AND click is outside sidebar and toggle button
+    if (window.innerWidth < 768 && body.classList.contains('sidebar-open') &&
+        !sidebar.contains(event.target) && !sidebarToggleBtn.contains(event.target)) {
+        body.classList.remove('sidebar-open');
+        sidebar.classList.add('hidden-mobile');
+    }
+});
+
+// Toggle Profile Dropdown
+profileButton.addEventListener('click', (event) => {
+    event.stopPropagation(); // Prevent click from bubbling to window and closing immediately
+    profileMenu.classList.toggle('hidden');
+    notificationsMenu.classList.add('hidden'); // Close other dropdowns
+});
+
+// Toggle Notifications Dropdown
+notificationsButton.addEventListener('click', (event) => {
+    event.stopPropagation(); // Prevent click from bubbling to window and closing immediately
+    notificationsMenu.classList.toggle('hidden');
+    profileMenu.classList.add('hidden'); // Close other dropdowns
+});
+
+// Close dropdowns if clicked outside
+window.addEventListener('click', (event) => {
+    if (!profileButton.contains(event.target) && !profileMenu.contains(event.target)) {
+        profileMenu.classList.add('hidden');
+    }
+    if (!notificationsButton.contains(event.target) && !notificationsMenu.contains(event.target)) {
+        notificationsMenu.classList.add('hidden');
+    }
+});
+
+// --- Gemini API Integration ---
+const generateSalesInsightBtn = document.getElementById('generate-sales-insight-btn');
+const salesInsightOutput = document.getElementById('sales-insight-output');
+const summarizeActivityBtn = document.getElementById('summarize-activity-btn');
+const activitySummaryOutput = document.getElementById('activity-summary-output');
+const activityList = document.getElementById('activity-list');
+
+// Function to call Gemini API
+async function callGeminiAPI(prompt, outputElement) {
+    outputElement.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Generating...';
+    outputElement.classList.remove('text-red-400'); // Clear previous error styling
+
+    let chatHistory = [];
+    chatHistory.push({
+        role: "user",
+        parts: [{
+            text: prompt
+        }]
+    });
+
+    const payload = {
+        contents: chatHistory
+    };
+    const apiKey = ""; // Canvas will automatically provide this at runtime
+
+    const apiUrl =
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+    try {
+        const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
         });
 
-        // Close sidebar when clicking outside on small screens if it's open
-        document.addEventListener('click', (event) => {
-            // Check if screen is mobile AND sidebar is open AND click is outside sidebar and toggle button
-            if (window.innerWidth < 768 && body.classList.contains('sidebar-open') &&
-                !sidebar.contains(event.target) && !sidebarToggleBtn.contains(event.target)) {
-                body.classList.remove('sidebar-open');
-                sidebar.classList.add('hidden-mobile');
-            }
-        });
-
-        // Toggle Profile Dropdown
-        profileButton.addEventListener('click', (event) => {
-            event.stopPropagation(); // Prevent click from bubbling to window and closing immediately
-            profileMenu.classList.toggle('hidden');
-            notificationsMenu.classList.add('hidden'); // Close other dropdowns
-        });
-
-        // Toggle Notifications Dropdown
-        notificationsButton.addEventListener('click', (event) => {
-            event.stopPropagation(); // Prevent click from bubbling to window and closing immediately
-            notificationsMenu.classList.toggle('hidden');
-            profileMenu.classList.add('hidden'); // Close other dropdowns
-        });
-
-        // Close dropdowns if clicked outside
-        window.addEventListener('click', (event) => {
-            if (!profileButton.contains(event.target) && !profileMenu.contains(event.target)) {
-                profileMenu.classList.add('hidden');
-            }
-            if (!notificationsButton.contains(event.target) && !notificationsMenu.contains(event.target)) {
-                notificationsMenu.classList.add('hidden');
-            }
-        });
-
-        // --- Gemini API Integration ---
-        const generateSalesInsightBtn = document.getElementById('generate-sales-insight-btn');
-        const salesInsightOutput = document.getElementById('sales-insight-output');
-        const summarizeActivityBtn = document.getElementById('summarize-activity-btn');
-        const activitySummaryOutput = document.getElementById('activity-summary-output');
-        const activityList = document.getElementById('activity-list');
-
-        // Function to call Gemini API
-        async function callGeminiAPI(prompt, outputElement) {
-            outputElement.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Generating...';
-            outputElement.classList.remove('text-red-400'); // Clear previous error styling
-
-            let chatHistory = [];
-            chatHistory.push({ role: "user", parts: [{ text: prompt }] });
-
-            const payload = { contents: chatHistory };
-            const apiKey = ""; // Canvas will automatically provide this at runtime
-
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-            try {
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-
-                if (!response.ok) {
-                    const errorData = await response.json();
-                    throw new Error(`API Error: ${response.status} - ${errorData.error.message || 'Unknown error'}`);
-                }
-
-                const result = await response.json();
-
-                if (result.candidates && result.candidates.length > 0 &&
-                    result.candidates[0].content && result.candidates[0].content.parts &&
-                    result.candidates[0].content.parts.length > 0) {
-                    const text = result.candidates[0].content.parts[0].text;
-                    outputElement.innerHTML = text;
-                } else {
-                    outputElement.innerHTML = 'Error: No content generated by LLM.';
-                    outputElement.classList.add('text-red-400');
-                }
-            } catch (error) {
-                console.error('Error calling Gemini API:', error);
-                outputElement.innerHTML = `Error: ${error.message}`;
-                outputElement.classList.add('text-red-400');
-            }
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(`API Error: ${response.status} - ${errorData.error.message || 'Unknown error'}`);
         }
 
-        // Event Listener for Sales Insight Button
-        generateSalesInsightBtn.addEventListener('click', () => {
-            const currentSales = "$12,345";
-            const lastMonthChange = "+5.2%";
-            const prompt = `Given current total sales of ${currentSales} and a ${lastMonthChange} increase from last month, provide a concise sales insight for a dashboard. Focus on a positive trend or a key takeaway.`;
-            callGeminiAPI(prompt, salesInsightOutput);
-        });
+        const result = await response.json();
 
-        // Event Listener for Activity Summary Button
-        summarizeActivityBtn.addEventListener('click', () => {
-            const activities = Array.from(activityList.children).map(li => {
-                const description = li.querySelector('p:first-child').textContent;
-                const time = li.querySelector('p:last-child').textContent;
-                const category = li.querySelector('span:last-child').textContent;
-                return `${description} (${time}, Category: ${category})`;
-            }).join('\n');
+        if (result.candidates && result.candidates.length > 0 &&
+            result.candidates[0].content && result.candidates[0].content.parts &&
+            result.candidates[0].content.parts.length > 0) {
+            const text = result.candidates[0].content.parts[0].text;
+            outputElement.innerHTML = text;
+        } else {
+            outputElement.innerHTML = 'Error: No content generated by LLM.';
+            outputElement.classList.add('text-red-400');
+        }
+    } catch (error) {
+        console.error('Error calling Gemini API:', error);
+        outputElement.innerHTML = `Error: ${error.message}`;
+        outputElement.classList.add('text-red-400');
+    }
+}
 
-            const prompt = `Summarize the following recent activity log entries into a brief, easy-to-read paragraph for a dashboard:\n\n${activities}`;
-            callGeminiAPI(prompt, activitySummaryOutput);
-        });
+// Event Listener for Sales Insight Button
+generateSalesInsightBtn.addEventListener('click', () => {
+    const currentSales = "$12,345";
+    const lastMonthChange = "+5.2%";
+    const prompt =
+        `Given current total sales of ${currentSales} and a ${lastMonthChange} increase from last month, provide a concise sales insight for a dashboard. Focus on a positive trend or a key takeaway.`;
+    callGeminiAPI(prompt, salesInsightOutput);
+});
 
-        // Initial setup for sidebar on desktop (to ensure it's visible on load)
-        window.addEventListener('load', () => {
-            if (window.innerWidth >= 768) {
-                sidebar.classList.remove('hidden-mobile'); // Ensure it's visible
-                sidebar.classList.add('flex'); // Ensure flex display
-                mainContentWrapper.style.marginLeft = '16rem'; // Set margin for desktop
-            } else {
-                sidebar.classList.add('hidden-mobile'); // Ensure it's hidden
-                sidebar.classList.remove('flex'); // Remove flex display
-                mainContentWrapper.style.marginLeft = '0'; // Reset margin for mobile
-            }
-        });
+// Event Listener for Activity Summary Button
+summarizeActivityBtn.addEventListener('click', () => {
+    const activities = Array.from(activityList.children).map(li => {
+        const description = li.querySelector('p:first-child').textContent;
+        const time = li.querySelector('p:last-child').textContent;
+        const category = li.querySelector('span:last-child').textContent;
+        return `${description} (${time}, Category: ${category})`;
+    }).join('\n');
 
-        // Adjust sidebar on window resize
-        window.addEventListener('resize', () => {
-            if (window.innerWidth >= 768) {
-                sidebar.classList.remove('hidden-mobile'); // Ensure it's visible
-                sidebar.classList.add('flex'); // Ensure flex display
-                mainContentWrapper.style.marginLeft = '16rem'; // Set margin for desktop
-                body.classList.remove('sidebar-open'); // Remove sidebar-open class on desktop
-            } else {
-                sidebar.classList.add('hidden-mobile'); // Ensure it's hidden
-                sidebar.classList.remove('flex'); // Remove flex display
-                mainContentWrapper.style.marginLeft = '0'; // Reset margin for mobile
-            }
-        });
-    </script>
+    const prompt =
+        `Summarize the following recent activity log entries into a brief, easy-to-read paragraph for a dashboard:\n\n${activities}`;
+    callGeminiAPI(prompt, activitySummaryOutput);
+});
+
+// Initial setup for sidebar on desktop (to ensure it's visible on load)
+window.addEventListener('load', () => {
+    if (window.innerWidth >= 768) {
+        sidebar.classList.remove('hidden-mobile'); // Ensure it's visible
+        sidebar.classList.add('flex'); // Ensure flex display
+        mainContentWrapper.style.marginLeft = '16rem'; // Set margin for desktop
+    } else {
+        sidebar.classList.add('hidden-mobile'); // Ensure it's hidden
+        sidebar.classList.remove('flex'); // Remove flex display
+        mainContentWrapper.style.marginLeft = '0'; // Reset margin for mobile
+    }
+});
+
+// Adjust sidebar on window resize
+window.addEventListener('resize', () => {
+    if (window.innerWidth >= 768) {
+        sidebar.classList.remove('hidden-mobile'); // Ensure it's visible
+        sidebar.classList.add('flex'); // Ensure flex display
+        mainContentWrapper.style.marginLeft = '16rem'; // Set margin for desktop
+        body.classList.remove('sidebar-open'); // Remove sidebar-open class on desktop
+    } else {
+        sidebar.classList.add('hidden-mobile'); // Ensure it's hidden
+        sidebar.classList.remove('flex'); // Remove flex display
+        mainContentWrapper.style.marginLeft = '0'; // Reset margin for mobile
+    }
+});
+</script>
 </body>
+
 </html>
