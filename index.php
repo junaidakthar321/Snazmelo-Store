@@ -48,7 +48,7 @@ require_once 'includes/db.php';
         <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800 dark:text-gray-200">Featured Products</h2>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-           <?php  if ( $product_data->num_rows ) {
+           <?php  if ( $product_data->num_rows  ) {
                                     while($product = $product_data->fetch_assoc()):
                                     $error = "<p style='color:red;' class='error-msg'>Email already existe.</p>";
                                     ?>
