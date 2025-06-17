@@ -2,12 +2,12 @@
  session_start();
 require_once '../includes/db.php';
 require  "header.php";
- $product_author = $_SESSION[ 'id' ];
+ $product_author = $_SESSION[ 'user_name' ];
  $get_data = $conn->prepare('SELECT * FROM product_data WHERE product_author = ? ');
  $get_data->bind_param("i" , $product_author);
  $get_data->execute();
  $product_data =  $get_data->get_result();
-   
+
 
 
 ?>
@@ -98,7 +98,7 @@ require  "header.php";
                                  <span class="text-yellow-400">⭐</span>
                                  <span>4.8 (1.2k reviews)</span>
                              </div>
-                             <a href="#" class="w-full py-3 px-6 rounded-full text-lg font-medium
+                             <a href='<?php echo $url."/creater-dashboard/product-details.php?prod=".$product['product_id'];?>' class="w-full py-3 px-6 rounded-full text-lg font-medium
                                   bg-gradient-to-r from-purple-600 to-indigo-700 text-white shadow-lg
                                   hover:from-purple-700 hover:to-indigo-800
                                   focus:outline-none focus:ring-4 focus:ring-purple-500
