@@ -40,35 +40,32 @@ if ( isset( $_POST[ 'submit' ] ) ) {
 }
 
 ?>
-<script src = '../assets/css/tailwind.css'></script>
-<section class = 'dark bg-gray-900 h-screen flex items-center justify-center'>
-<form method = 'POST'
+<script src='../assets/css/tailwind.css'></script>
+<section class='dark bg-gray-900 h-screen flex items-center justify-center'>
+    <form method='POST'
+        class='max-w-[390px] w-full mx-auto  bg-gray-900 text-white p-8 rounded-2xl shadow-lg space-y-6 border'>
+        <h2 class='text-2xl font-bold text-center text-white'>login</h2>
 
-class = 'max-w-[390px] w-full mx-auto  bg-gray-900 text-white p-8 rounded-2xl shadow-lg space-y-6 border'>
-<h2 class = 'text-2xl font-bold text-center text-white'>login</h2>
-
-<div class = 'space-y-2'>
-<?php echo $error;
+        <div class='space-y-2'>
+            <?php echo $error;
 ?>
-</div>
-<div class = 'space-y-2'>
-<label for = 'email' class = 'block text-sm font-medium'>Email</label>
-<input type = 'email' id = 'email' name = 'email'
+        </div>
+        <div class='space-y-2'>
+            <label for='email' class='block text-sm font-medium'>Email</label>
+            <input type='email' id='email' name='email'
+                class='w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'>
+        </div>
 
-class = 'w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'>
-</div>
+        <div class='space-y-2'>
+            <label for='password' class='block text-sm font-medium'>Password</label>
+            <input type='password' id='password' name='password'
+                class='w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'>
+        </div>
 
-<div class = 'space-y-2'>
-<label for = 'password' class = 'block text-sm font-medium'>Password</label>
-<input type = 'password' id = 'password' name = 'password'
+        <input type='submit' value='Submit' name='submit'
+            class='w-full py-2 mt-4 font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-md transition duration-200'>
 
-class = 'w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'>
-</div>
-
-<input type = 'submit' value = 'Submit' name = 'submit'
-
-class = 'w-full py-2 mt-4 font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-md transition duration-200'>
-
-<span class = 'block pt-1'> Please <a href = './registration.php' class = 'underline text-blue-600 hover:text-blue-800'>click here</a> to register.</span>
-</form>
+        <span class='block pt-1'> Please <a href='./registration.php'
+                class='underline text-blue-600 hover:text-blue-800'>click here</a> to register.</span>
+    </form>
 </section>
